@@ -15,7 +15,7 @@ class FileStorage:
 
     def save(self):
         with open(self.__file_path, 'w+') as filie:
-            json.dump(self.__objects.__dict__, filie)
+            json.dump(self.__objects, filie)
 
     def reload(self):
         try:
