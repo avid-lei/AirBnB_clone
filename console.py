@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
             b = BaseModel()
             print('{}'.format(b.id))
             self.ins.append(b)
-            self.atr.append(b)
+            self.atr.append(b.__str__())
             b.save()
 
     def do_show(self, arg):
@@ -96,9 +96,7 @@ class HBNBCommand(cmd.Cmd):
         """show all instances"""
         args = arg.split(" ")
         if len(args[0]) == 0 or args[0] == 'BaseModel':
-            for ins in self.ins:
-                print(ins.__str__(), end="")
-            print()
+           print(self.atr)
         else:
             print("** class doesn't exist **")
 
