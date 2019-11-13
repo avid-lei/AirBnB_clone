@@ -13,11 +13,11 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     file = None
 
-    def __init__(self):
-        """initialization of class"""
-        super(HBNBCommand, self).__init__()
-        self.ins = []
-        self.atr = []
+    #def __init__(self):
+        #"""initialization of class"""
+        #super(HBNBCommand, self).__init__()
+    ins = []
+    atr = []
 
     def do_quit(self, *args):
         """Quit command to exit the program"""
