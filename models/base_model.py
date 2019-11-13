@@ -44,4 +44,3 @@ class BaseModel:
 
     def kwset(self, **kwargs):
         """set attribute from kwargs"""
-        
