@@ -11,7 +11,6 @@ class HBNBCommand(cmd.Cmd):
 
     file_path = "file.json"
     prompt = '(hbnb) '
-    file = None
 
     #ins = []
     #atr = []
