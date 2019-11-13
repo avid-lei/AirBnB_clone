@@ -61,9 +61,9 @@ class HBNBCommand(cmd.Cmd):
             if flag == 0:
                 print("** no instance found **")
 
-    def emptyline(self):
-        """Empty Line does not execute previous command"""
-        pass
+    #def emptyline(self):
+    #    """Empty Line does not execute previous command"""
+    #    pass
 
     def do_destroy(self, arg):
         """destroy instance of class via ID number"""
