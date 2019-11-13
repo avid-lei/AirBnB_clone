@@ -10,12 +10,9 @@ class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class"""
 
     file_path = "file.json"
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     file = None
 
-    #def __init__(self):
-        #"""initialization of class"""
-        #super(HBNBCommand, self).__init__()
     ins = []
     atr = []
 
@@ -61,9 +58,6 @@ class HBNBCommand(cmd.Cmd):
             if flag == 0:
                 print("** no instance found **")
 
-    #def emptyline(self):
-    #    """Empty Line does not execute previous command"""
-    #    pass
 
     def do_destroy(self, arg):
         """destroy instance of class via ID number"""
