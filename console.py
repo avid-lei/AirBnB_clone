@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ console class """
-
 import cmd
 import json
 from models.base_model import BaseModel
