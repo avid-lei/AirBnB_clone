@@ -5,7 +5,7 @@
 import cmd
 import json
 from models.base_model import BaseModel
-import shlex
+#import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -108,7 +108,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update instance"""
-        args = shlex.split(arg)
+        args = arg.split(" ")
+        #args = shlex.split(arg)
         if len(args[0]) == 0:
             print("** class name missing **")
         elif not args[0] == "BaseModel":
