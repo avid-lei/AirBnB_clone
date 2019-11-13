@@ -7,10 +7,12 @@ import shlex
 
 
 class HBNBCommand(cmd.Cmd):
+    """ HBNBCommand class"""
     
     file_path = "file.json"
     prompt = '(hbnb)'
     def __init__(self):
+        """initialization of class"""
         super(HBNBCommand, self).__init__()
         self.ins = []
         self.atr = []
@@ -25,6 +27,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
+        """Create new instance of class"""
         args = arg.split(" ")
         if len(args[0]) == 0:
             print("** class name missing **")
@@ -39,6 +42,7 @@ class HBNBCommand(cmd.Cmd):
  
     
     def do_show(self, arg):
+        """Show Class Instance by ID #"""
         args = arg.split(" ")
         if len(args[0]) == 0:
             print("** class name missing **")
@@ -58,9 +62,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def emptyline(self):
+        """Empty Line does not execute previous command"""
         pass
 
     def do_destroy(self, arg):
+        """destroy instance of class via ID number"""
         args = arg.split(" ")
         flag = 0
         if len(args[0]) == 0:
@@ -89,6 +95,7 @@ class HBNBCommand(cmd.Cmd):
  
 
     def do_all(self, arg):
+        """show all instances"""
         args = arg.split(" ")
         if len(args[0]) == 0 or args[0] == 'BaseModel':
             for ins in self.ins:
@@ -98,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
+        """update instance"""
         args = shlex.split(arg)
         if len(args[0]) == 0:
             print("** class name missing **")
