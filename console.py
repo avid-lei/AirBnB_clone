@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class"""
 
     file_path = "file.json"
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def __init__(self):
         """initialization of class"""
