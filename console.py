@@ -12,14 +12,8 @@ class HBNBCommand(cmd.Cmd):
     file_path = "file.json"
     prompt = '(hbnb) '
 
-    #ins = []
-    #atr = []
-
-    def __init__(self):	  
-        """initialization of class"""	       
-        super(HBNBCommand, self).__init__()	       
-        self.ins = []	    
-        self.atr = []
+    ins = []
+    atr = []
 
     def do_quit(self, *args):
         """Quit command to exit the program"""
@@ -28,6 +22,10 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, *args):
         """EOF command to exit the program"""
         return True
+
+    def emptyline(self):
+        """Empty Line does not execute previous command"""
+        pass
 
     def do_create(self, arg):
         """Create new instance of class"""
@@ -63,7 +61,6 @@ class HBNBCommand(cmd.Cmd):
             if flag == 0:
                 print("** no instance found **")
 
-
     def do_destroy(self, arg):
         """destroy instance of class via ID number"""
         args = arg.split(" ")
@@ -96,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
         """show all instances"""
         args = arg.split(" ")
         if len(args[0]) == 0 or args[0] == 'BaseModel':
-           print(self.atr)
+            print(self.atr)
         else:
             print("** class doesn't exist **")
 
