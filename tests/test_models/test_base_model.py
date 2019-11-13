@@ -9,17 +9,17 @@ class TestMyBase(unittest.TestCase):
     def setUp(self):
         """Setting up instances"""
         self.base = BaseModel()
-        self.new = BaseModel()
+        self._new = BaseModel()
 
     def tearDown(self):
         """Cleaning up"""
         del self.base
-        del self.new
+        del self._new
 
     def test_is_created(self):
         """Testing if the instance was created"""
         self.assertTrue(self.base)
-        self.assertTrue(self.new)
+        self.assertTrue(self._new)
 
     def test_is_str(self):
         """Testing if attributes are strings"""
@@ -46,12 +46,12 @@ class TestMyBase(unittest.TestCase):
     def test_is_updated(self):
         """Testing if value of datetime is updated"""
         old = self.base.created_at
-        new = self.base.save()
-        self.assertIsNot(old, new)
+        self.base.save()
+        self.assertIsNot(old, self._new)
 
     def test_is_id_diff(self):
         """Testing if instances created are different"""
-        self.assertIsNot(self.base.id, self.new.id)
+        self.assertIsNot(self.base.id, self._new.id)
 
 if __name__ == '__main__':
     unittest.main()
