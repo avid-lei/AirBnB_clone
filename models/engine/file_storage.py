@@ -17,7 +17,7 @@ class FileStorage:
     def new(self, obj):
         """Assigns objects"""
         self.__objects['{}.{}'.format(obj.__class__.__name__,
-                                      obj.id)] = obj
+                                      obj.id)] = obj.__dict__
 
     def save(self):
         """Writes an object to a file"""
