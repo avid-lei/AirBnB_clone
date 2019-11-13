@@ -1,24 +1,23 @@
 #!/usr/bin/python3
 """ console class """
 
-
 import cmd
 import json
 from models.base_model import BaseModel
-#import shlex
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class"""
-    
+
     file_path = "file.json"
     prompt = '(hbnb)'
+
     def __init__(self):
         """initialization of class"""
         super(HBNBCommand, self).__init__()
         self.ins = []
         self.atr = []
-
 
     def do_quit(self, *args):
         """Quit command to exit the program"""
@@ -36,13 +35,12 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] != 'BaseModel':
             print("** class doesn't exist **")
         else:
-            b = BaseModel()#change this later
+            b = BaseModel()
             print('{}'.format(b.id))
             self.ins.append(b)
             self.atr.append(b)
             b.save()
- 
-    
+
     def do_show(self, arg):
         """Show Class Instance by ID #"""
         args = arg.split(" ")
@@ -59,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
                 if idn in ins.__str__():
                     print(ins)
                     flag = 1
-            
+
             if flag == 0:
                 print("** no instance found **")
 
@@ -83,18 +81,17 @@ class HBNBCommand(cmd.Cmd):
                 if idn in ins.__str__():
                     self.ins.remove(ins)
                     flag = 1
-                
+
             if flag == 0:
                 print("** no instance found *")
             else:
                 with open(HBNBCommand.file_path, "r") as f:
                     jobj = json.load(f)
-            
+
                 del jobj["BaseModel.{}".format(args[1])]
 
                 with open(HBNBCommand.file_path, "w") as f:
                     json.dump(jobj, f)
- 
 
     def do_all(self, arg):
         """show all instances"""
@@ -108,16 +105,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update instance"""
-        args = arg.split(" ")
-        #args = shlex.split(arg)
+        args = shlex.split(arg)
         if len(args[0]) == 0:
             print("** class name missing **")
         elif not args[0] == "BaseModel":
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-        #elif not "({})".format(args[1]) in self.ins:
-        #    print("** no instance found **")
         elif len(args) == 2:
             print("** attribute name missing **")
         elif len(args) == 3:
@@ -130,11 +124,5 @@ class HBNBCommand(cmd.Cmd):
                     setattr(ins, args[2], val)
                     ins.save()
 
-    
-    
-    
-        
-
 if __name__ == '__main__':
-   HBNBCommand().cmdloop()
-
+    HBNBCommand().cmdloop()
