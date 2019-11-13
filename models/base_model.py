@@ -13,11 +13,15 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             storage.new(self)
+            self.created_at = datetime.strptime(self.created_at, '%Y-%m-%dT%H:%M:%S.%f')
+            self.updated_at = datetime.strptime(self.updated_at, '%Y-%m-%dT%H:%M:%S.%f')
+
+            
         else:
             self.kwset(**kwargs)
 
     def __str__(self):
-        return "[BaseModel] ({}) {}".format(self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         self.updated_at = datetime.now()
@@ -25,8 +29,8 @@ class BaseModel:
 
     def to_dict(self):
         d = self.__dict__
-        d['__class__'] = 'BaseModel'
-        d['updated_at'] = self.updated_at.isoformat()
+        d['__class__'] = self.__class__.__name__ 
+        d['updated_at'] = self.updated_at.isoformat() 
         d['created_at'] = self.created_at.isoformat()
         return d
 
@@ -34,7 +38,5 @@ class BaseModel:
         for key, val in kwargs.items():
             if not key == '__class__':
                 setattr(self, key, val)
-        self.created_at = datetime.strptime(self.created_at,
-                                            '%Y-%m-%dT%H:%M:%S.%f')
-        self.updated_at = datetime.strptime(self.updated_at,
-                                            '%Y-%m-%dT%H:%M:%S.%f')
+        self.created_at = datetime.strptime(self.created_at, '%Y-%m-%dT%H:%M:%S.%f')
+        self.updated_at = datetime.strptime(self.updated_at, '%Y-%m-%dT%H:%M:%S.%f')
