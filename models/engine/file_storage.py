@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """file storage class"""
 import json
+from datetime import datetime
 
 
 class FileStorage:
@@ -16,7 +17,7 @@ class FileStorage:
     def new(self, obj):
         """Assigns objects"""
         self.__objects['{}.{}'.format(obj.__class__.__name__,
-                                      obj.id)] = obj.to_dict()
+                                      obj.id)] = obj
 
     def save(self):
         """Writes an object to a file"""
@@ -28,5 +29,6 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as f:
                 self.__objects = json.load(f)
+            
         except:
             pass
