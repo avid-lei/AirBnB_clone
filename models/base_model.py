@@ -1,5 +1,5 @@
-#!/usr/bin/python3
 """class Base Model"""
+
 
 from models import storage
 import uuid
@@ -30,10 +30,10 @@ class BaseModel:
 
     def to_dict(self):
         """to dictionary method"""
-        d = self.__dict__
+        d = self.__dict__.copy()
         d['__class__'] = self.__class__.__name__
-        d['updated_at'] = self.updated_at.isoformat()
-        d['created_at'] = self.created_at.isoformat()
+        d['updated_at'] = d['updated_at'].isoformat()
+        d['created_at'] = d['created_at'].isoformat()
         return d
 
     def kwset(self, **kwargs):
