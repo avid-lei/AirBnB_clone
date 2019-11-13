@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """class Base Model"""
+
 from models import storage
 import uuid
 from datetime import datetime
@@ -7,6 +8,7 @@ from datetime import datetime
 
 class BaseModel:
     """ class Base Model"""
+
     def __init__(self, *args, **kwargs):
         """ initialize Base Model """
         if len(kwargs) == 0:
