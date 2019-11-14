@@ -14,10 +14,8 @@ class TestMyBase(unittest.TestCase):
         """Cleaning up"""
         del self.base
 
-
     def test_attributes(self):
         """Testing that attributes are set"""
-        self.maxDiff = None
         self.base.name = "Diva"
         self.base.num = 20
         self.assertEqual(self.base.name, "Diva")
@@ -69,6 +67,45 @@ class TestMyBase(unittest.TestCase):
         """Testing if instances created are different"""
         new = BaseModel()
         self.assertIsNot(self.base.id, new.id)
+    
+    def test_passing_int(self):
+        """Testing what happens if numbers are passed into parameter"""
+        new = BaseModel(5)
+        self.assertIsInstance(new, BaseModel)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.id, str)
+    
+    def test_passing_float(self):
+        new = BaseModel(6.1)
+        self.assertIsInstance(new, BaseModel)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.id, str)
+    
+    def test_passing_list(self):
+        new = BaseModel([1, 2, 3])
+        self.assertIsInstance(new, BaseModel)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.id, str)
+
+    def test_passing_string(self):
+        new = BaseModel("Hello")
+        self.assertIsInstance(new, BaseModel)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.id, str)
+    
+    def test_passing_dict(self):
+        new = BaseModel({})
+        self.assertIsInstance(new, BaseModel)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.id, str)
+    
+
+        
 
        
 
