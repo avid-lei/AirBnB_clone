@@ -7,7 +7,7 @@ from models.state import State
 
 
 class TestMyState(unittest.TestCase):
-    """New class to test class Place"""
+    """New class to test class State"""
 
     def setUp(self):
         """Setting up"""
