@@ -18,10 +18,10 @@ class BaseModel:
         else:
             for key, val in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f'))
+                    setattr(self, key,
+                            datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f'))
                 elif not key == "__class__":
                     setattr(self, key, val)
-                
 
     def __str__(self):
         """string representation"""

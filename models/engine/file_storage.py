@@ -11,18 +11,16 @@ from models.state import State
 from models.review import Review
 
 
-
 class FileStorage:
     """class FileStorage"""
 
     __file_path = "file.json"
     __objects = {}
     classes = {
-            "BaseModel": BaseModel, "User": User, 
+            "BaseModel": BaseModel, "User": User,
             "Amenity": Amenity, "City": City, "State": State,
             "Place": Place, "Review": Review
             }
-
 
     def all(self):
         """Returns dictionary"""
@@ -49,7 +47,7 @@ class FileStorage:
             with open(self.__file_path, "r") as f:
                 new = json.load(f)
 
-                for k,v in new.items():
+                for k, v in new.items():
                     self.__objects[k] = self.classes[v["__class__"]](**v)
         except:
             pass
