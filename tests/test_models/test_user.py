@@ -67,10 +67,16 @@ class TestMyUser(unittest.TestCase):
 
     def test_if_str(self):
         """Check if the attributes are strings"""
-        assert self.new.email is str
-        assert self.new.password is str
-        assert self.new.first_name is str
-        assert self.new.last_name is str
+
+        self.new.email = 'holbertonschoolisthebestschoolever@this.world'
+        self.new.password = 'imnottellingyoumypassword'
+        self.new.first_name = 'Diva'
+        self.new.last_name = 'Mapatelian'
+
+        self.assertTrue(type(self.new.email) == str)
+        self.assertTrue(type(self.new.password) == str)
+        self.assertTrue(type(self.new.first_name) == str)
+        self.assertTrue(type(self.new.last_name) == str)
 
     def test_right_class(self):
         """Check if the instance belongs to a right class"""
