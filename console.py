@@ -165,6 +165,7 @@ class HBNBCommand(cmd.Cmd):
                     }
         commands2 = {
                         "show": self.do_show, "destroy": self.do_destroy,
+                        "update": self.do_update
                     }
         args = arg.split(".")
         if len(args) != 2 or args[0] not in self.classes:
@@ -186,13 +187,14 @@ class HBNBCommand(cmd.Cmd):
                 return False
 
             cm = arg2[0]
-            arg3 = arg2[1].split(')')
-            idn = arg3[0]
+            idn = arg2[1].split(')')
+            idc = idn[0].split(',')
 
-            if len(idn) == 0:
+            if len(idn[0]) == 0:
                 print("*** Unknown syntax: " + arg)
                 return False
-            last = cl + ' ' + idn
+            last = cl + ' ' + "".join(idc)
+
             commands2[cm](last)
 
 
