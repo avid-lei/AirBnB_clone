@@ -65,6 +65,13 @@ class TestMyUser(unittest.TestCase):
         self.assertEqual(self.new.first_name, 'Diva')
         self.assertEqual(self.new.last_name, 'Mapatelian')
 
+    def test_if_str(self):
+        """Check if the attributes are strings"""
+        assert self.new.email is str
+        assert self.new.password is str
+        assert self.new.first_name is str
+        assert self.new.last_name is str
+
     def test_right_class(self):
         """Check if the instance belongs to a right class"""
         self.assertIs(type(self.base), BaseModel)
