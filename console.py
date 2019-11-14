@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-        elif len(args) == 2:
+        else:
             flag = 0
             idn = "[{}] ({})".format(args[0], args[1])
             for ins in self.ins:
@@ -126,24 +126,27 @@ class HBNBCommand(cmd.Cmd):
                     flag = 1
             if flag == 0:
                 print("** no instance found **")
-            else:
+                return
+            elif len(args) == 2:
                 print("** attribute name missing **")
-        elif len(args) == 3:
-            print("** value missing **")
-        else:
-            idn = "[{}] ({})".format(args[0], args[1])
-            for ins in self.ins:
-                if idn in ins.__str__():
-                    try:
-                        val = int(args[3])
-                    except ValueError:
+                return
+            elif len(args) == 3:
+                print("** value missing **")
+                return
+            else:
+                idn = "[{}] ({})".format(args[0], args[1])
+                for ins in self.ins:
+                    if idn in ins.__str__():
                         try:
-                            val = float(args[3])
+                            val = int(args[3])
                         except ValueError:
-                            val = args[3]
+                            try:
+                                val = float(args[3])
+                            except ValueError:
+                                val = args[3]
 
-                    setattr(ins, args[2], val)
-                    ins.save()
+                        setattr(ins, args[2], val)
+                        ins.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
