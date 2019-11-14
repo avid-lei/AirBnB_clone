@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
-            idn = "({})".format(args[1])
+            idn = "[{}] ({})".format(args[0], args[1])
             flag = 0
             for ins in self.ins:
                 if idn in ins.__str__():
