@@ -9,17 +9,24 @@ class TestMyBase(unittest.TestCase):
     def setUp(self):
         """Setting up instances"""
         self.base = BaseModel()
-        self._new = BaseModel()
 
     def tearDown(self):
         """Cleaning up"""
         del self.base
-        del self._new
+
+
+    def test_attributes(self):
+        """Testing that attributes are set"""
+        self.maxDiff = None
+        self.base.name = "Diva"
+        self.base.num = 20
+        self.assertEqual(self.base.name, "Diva")
+        self.assertEqual(self.base.num, 20)    
 
     def test_is_created(self):
         """Testing if the instance was created"""
+        self.assertEqual(self.base.__class__.__name__, 'BaseModel')
         self.assertTrue(self.base)
-        self.assertTrue(self._new)
 
     def test_is_str(self):
         """Testing if attributes are strings"""
@@ -33,6 +40,7 @@ class TestMyBase(unittest.TestCase):
     def test_class_inst(self):
         """Test if the instance is of BaseModel class"""
         self.assertEqual(type(self.base), BaseModel)
+        self.assertIsInstance(self.base, BaseModel)
 
     def test_is_instance(self):
         """Test for BaseModel class"""
@@ -40,18 +48,30 @@ class TestMyBase(unittest.TestCase):
 
     def test_is_dict(self):
         """Test for dictionary"""
+        self.base.num = 20
         dicty = self.base.to_dict()
         self.assertEqual(type(dicty), dict)
+        self.assertIsInstance(dicty['id'], str)
+        self.assertIsInstance(dicty['created_at'], str)
+        self.assertIsInstance(dicty['updated_at'], str)
+        self.assertIsInstance(dicty['__class__'], str)
+        self.assertIsInstance(dicty['num'], int)
+
 
     def test_is_updated(self):
         """Testing if value of datetime is updated"""
         old = self.base.created_at
         self.base.save()
-        self.assertIsNot(old, self._new)
+        new = BaseModel()
+        self.assertIsNot(old, new)
 
     def test_is_id_diff(self):
         """Testing if instances created are different"""
-        self.assertIsNot(self.base.id, self._new.id)
+        new = BaseModel()
+        self.assertIsNot(self.base.id, new.id)
+
+       
+
 
 if __name__ == '__main__':
     unittest.main()
