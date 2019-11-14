@@ -20,7 +20,6 @@ class HBNBCommand(cmd.Cmd):
             "Amenity": Amenity, "City": City, "State": State,
             "Place": Place, "Review": Review
             }
-    
 
     file_path = "file.json"
     prompt = '(hbnb) '
@@ -155,7 +154,7 @@ class HBNBCommand(cmd.Cmd):
             if arg in ins.__str__():
                 count += 1
 
-        print(count) 
+        print(count)
 
     def default(self, arg):
         if not'.' in arg:
@@ -165,22 +164,36 @@ class HBNBCommand(cmd.Cmd):
                         "all()": self.do_all, "count()": self.do_count
                     }
         commands2 = {
-                        "show": self.do_show, "destory": self.do_destroy, 
-                        "update": self.do_update
+                        "show": self.do_show, "destroy": self.do_destroy,
                     }
         args = arg.split(".")
         if len(args) != 2 or args[0] not in self.classes:
             print("*** Unknown syntax: " + arg)
             return False
 
+        cl = args[0]
         if args[1] in commands1:
-            commands1[args[1]](args[0]) 
+            commands1[args[1]](cl)
         else:
             arg2 = args[1].split("(")
-            if arg2[0] not in commands2:
+
+            if len(arg2) == 1 or arg2[0] not in commands2:
                 print("*** Unknown syntax: " + arg)
                 return False
-        
+
+            if len(arg2[1]) == 0 or arg2[1][-1] != ')':
+                print("*** Unknown syntax: " + arg)
+                return False
+
+            cm = arg2[0]
+            arg3 = arg2[1].split(')')
+            idn = arg3[0]
+
+            if len(idn) == 0:
+                print("*** Unknown syntax: " + arg)
+                return False
+            last = cl + ' ' + idn
+            commands2[cm](last)
 
 
 if __name__ == '__main__':
