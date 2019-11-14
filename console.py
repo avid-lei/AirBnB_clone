@@ -20,6 +20,7 @@ class HBNBCommand(cmd.Cmd):
             "Amenity": Amenity, "City": City, "State": State,
             "Place": Place, "Review": Review
             }
+    
 
     file_path = "file.json"
     prompt = '(hbnb) '
@@ -147,6 +148,40 @@ class HBNBCommand(cmd.Cmd):
 
                         setattr(ins, args[2], val)
                         ins.save()
+
+    def do_count(self, arg):
+        count = 0
+        for ins in self.ins:
+            if arg in ins.__str__():
+                count += 1
+
+        print(count) 
+
+    def default(self, arg):
+        if not'.' in arg:
+            print("*** Unknown syntax: " + arg)
+            return False
+        commands1 = {
+                        "all()": self.do_all, "count()": self.do_count
+                    }
+        commands2 = {
+                        "show": self.do_show, "destory": self.do_destroy, 
+                        "update": self.do_update
+                    }
+        args = arg.split(".")
+        if len(args) != 2 or args[0] not in self.classes:
+            print("*** Unknown syntax: " + arg)
+            return False
+
+        if args[1] in commands1:
+            commands1[args[1]](args[0]) 
+        else:
+            arg2 = args[1].split("(")
+            if arg2[0] not in commands2:
+                print("*** Unknown syntax: " + arg)
+                return False
+        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
