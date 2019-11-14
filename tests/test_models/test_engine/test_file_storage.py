@@ -5,6 +5,7 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import os
 
+
 class testMyDict(unittest.TestCase):
     """Class to check FileStprage class"""
 
@@ -19,6 +20,20 @@ class testMyDict(unittest.TestCase):
         del self.base
         del self.stor
         del self.new
+
+    def test_if_private(self):
+        """Check if the attribute is private"""
+        mess = "'FileStorage' object has no attribute '_testMyDict__objects'"
+        self.stor = FileStorage()
+        with self.assertRaises(AttributeError) as err:
+            print(self.stor.__objects)
+        self.assertEqual(mess, str(err.exception))
+
+    def test_if_isinstance(self):
+        """Check if the instances belong to the classes"""
+        self.assertIsInstance(self.base, BaseModel)
+        self.assertIsInstance(self.new, BaseModel)
+        self.assertIsInstance(self.stor, FileStorage)
 
     def test_if_attrs_exist(self):
         """Check if FileStorage has the 2 public attributes"""
