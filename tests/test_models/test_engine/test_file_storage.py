@@ -27,7 +27,7 @@ class testMyDict(unittest.TestCase):
         self.stor = FileStorage()
         with self.assertRaises(AttributeError) as err:
             print(self.stor.__objects)
-        self.assertEqual(message, str(err.exception))
+        self.assertEqual(mess, str(err.exception))
 
     def test_if_isinstance(self):
         """Check if the instances belong to the classes"""
