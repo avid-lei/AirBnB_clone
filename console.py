@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
                     flag = 1
 
             if flag == 0:
-                print("** no instance found *")
+                print("** no instance found **")
             else:
                 with open(HBNBCommand.file_path, "r") as f:
                     jobj = json.load(f)
@@ -112,10 +112,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update instance"""
-        args = shlex.split(arg)
-        if len(args[0]) == 0:
+        if arg == "":
             print("** class name missing **")
-        elif args[0] not in self.classes:
+            return
+        args = shlex.split(arg)
+        if args[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
