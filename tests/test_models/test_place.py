@@ -6,7 +6,7 @@ import unittest
 from models.place import Place
 
 
-class TestMyCity(unittest.TestCase):
+class TestMyPlace(unittest.TestCase):
     """New class to test class Place"""
 
     def setUp(self):
