@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class"""
 
     classes = {
-            "BaseModel": BaseModel, "User": User, 
+            "BaseModel": BaseModel, "User": User,
             "Amenity": Amenity, "City": City, "State": State,
             "Place": Place, "Review": Review
             }
@@ -49,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
             b = self.classes[args[0]]()
             print(b.id)
             self.ins.append(b)
-            #self.atr.append(b.__str__())
             b.save()
 
     def do_show(self, arg):
@@ -109,7 +108,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print([x.__str__() for x in self.ins if args[0] in x.__str__()])
 
-
     def do_update(self, arg):
         """update instance"""
         if arg == "":
@@ -136,7 +134,15 @@ class HBNBCommand(cmd.Cmd):
             idn = "[{}] ({})".format(args[0], args[1])
             for ins in self.ins:
                 if idn in ins.__str__():
-                    setattr(ins, args[2], args[3])
+                    try:
+                        val = int(args[3])
+                    except ValueError:
+                        try:
+                            val = float(args[3])
+                        except ValueError:
+                            val = args[3]
+
+                    setattr(ins, args[2], val)
                     ins.save()
 
 if __name__ == '__main__':

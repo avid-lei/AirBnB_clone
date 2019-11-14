@@ -50,8 +50,6 @@ class FileStorage:
                 new = json.load(f)
 
                 for k,v in new.items():
-                    if v["__class__"] in self.classes:
-                        self.__objects[k] = self.classes[v["__class__"]](**v)
-
+                    self.__objects[k] = self.classes[v["__class__"]](**v)
         except:
             pass
