@@ -82,11 +82,10 @@ vagrant@vagrant-ubuntu-trusty-64:~$
 ## *Built with:*
 
   * Python programming language
-  * Love
 
 ## *Authors:*
-  * [Diva Lei](https://twitter.com/mapatelian)
-  * [Sasha Mapatelian](https://twitter.com/mapatelian)
+  * [Diva Lei]
+  * [Sasha Mapatelian]
 
 ## *Bugs:*
 If you have encountered any unexpected behaviour, contact us at:
